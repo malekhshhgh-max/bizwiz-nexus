@@ -46,7 +46,7 @@ function DynamicPage() {
   return (
     <SiteLayout>
       {hasHero ? null : (
-        <PageHero title={data.page.title} {...(data.page.description ? { description: data.page.description } : {})} />
+        <PageHero title={data.page.title} {...(data.page.meta_description ? { description: data.page.meta_description } : {})} />
       )}
       {data.sections.map((section) => (
         <SectionRenderer key={section.id} section={section} />
