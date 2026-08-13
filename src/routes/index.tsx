@@ -1,24 +1,45 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
+import { pageSectionsQuery } from "@/lib/cms/api";
+import { SiteLayout } from "@/components/site/SiteLayout";
+import { SectionRenderer } from "@/components/site/SectionRenderer";
+import { CardsSkeleton, ErrorState } from "@/components/shared/States";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "المستشار العزي للمشروع | استشارات الجودة والتطوير المؤسسي" },
+      {
+        name: "description",
+        content:
+          "بيت خبرة سعودي في الاستشارات الإدارية وأنظمة الجودة والتحول المؤسسي، نساعد الجهات على بناء أنظمة عمل مستدامة وقابلة للقياس.",
+      },
+      { property: "og:title", content: "المستشار العزي للمشروع" },
+      {
+        property: "og:description",
+        content: "شريكك في بناء أنظمة الجودة والتطوير المؤسسي بمعايير احترافية.",
+      },
+    ],
+  }),
+  component: HomePage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function HomePage() {
+  const { data, isPending, error, refetch } = useQuery(pageSectionsQuery("home"));
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <SiteLayout>
+      {isPending ? (
+        <div className="container-page py-20">
+          <CardsSkeleton count={3} />
+        </div>
+      ) : error ? (
+        <div className="container-page py-20">
+          <ErrorState message={error.message} onRetry={() => void refetch()} />
+        </div>
+      ) : (
+        (data?.sections ?? []).map((section) => <SectionRenderer key={section.id} section={section} />)
+      )}
+    </SiteLayout>
   );
 }
