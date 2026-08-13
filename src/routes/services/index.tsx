@@ -41,7 +41,7 @@ function ServicesPage() {
         <div className="container-page">
           {(categories ?? []).length > 0 ? (
             <div className="mb-10 flex flex-wrap gap-2">
-              {[{ id: "all", title: "جميع الخدمات" }, ...(categories ?? [])].map((cat) => (
+              {[{ id: "all", name: "جميع الخدمات" }, ...(categories ?? [])].map((cat) => (
                 <button
                   key={cat.id}
                   type="button"
@@ -53,7 +53,7 @@ function ServicesPage() {
                       : "bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground",
                   )}
                 >
-                  {cat.title}
+                  {cat.name}
                 </button>
               ))}
             </div>
