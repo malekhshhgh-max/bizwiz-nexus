@@ -1,13 +1,14 @@
-import { Link, type LinkComponentProps } from "@tanstack/react-router";
-import type { ReactNode } from "react";
+import { Link } from "@tanstack/react-router";
+import type { AnchorHTMLAttributes, ComponentType } from "react";
 
-type AppLinkProps = Omit<LinkComponentProps<"a">, "to"> & { to: string; children?: ReactNode };
+type AppLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & { to: string };
 
-/** Link wrapper that accepts CMS-managed (runtime) URLs. */
+const RouterLink = Link as unknown as ComponentType<AppLinkProps>;
+
+/** Link wrapper that accepts CMS-managed (runtime) URLs and external links. */
 export function AppLink({ to, ...rest }: AppLinkProps) {
-  const isExternal = /^(https?:)?\/\//.test(to) || to.startsWith("mailto:") || to.startsWith("tel:");
-  if (isExternal) {
-    return <a href={to} target="_blank" rel="noreferrer noopener" {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)} />;
-  }
-  return <Link to={to as LinkComponentProps<"a">["to"]} {...rest} />;
+  const isExternal =
+    /^(https?:)?\/\//.test(to) || to.startsWith("mailto:") || to.startsWith("tel:") || to.startsWith("#");
+  if (isExternal) return <a href={to} rel="noreferrer noopener" {...rest} />;
+  return <RouterLink to={to} {...rest} />;
 }
