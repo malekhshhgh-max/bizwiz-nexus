@@ -44,7 +44,7 @@ export function SiteHeader() {
           {items.map((item) => {
             const active = pathname === item.url || (item.url !== "/" && pathname.startsWith(item.url));
             return (
-              <Link
+              <AppLink
                 key={item.id}
                 to={item.url}
                 className={cn(
@@ -80,7 +80,7 @@ export function SiteHeader() {
         <div className="border-t border-border bg-background lg:hidden">
           <nav className="container-page flex flex-col gap-1 py-4" aria-label="قائمة الجوال">
             {items.map((item) => (
-              <Link
+              <AppLink
                 key={item.id}
                 to={item.url}
                 onClick={() => setOpen(false)}
