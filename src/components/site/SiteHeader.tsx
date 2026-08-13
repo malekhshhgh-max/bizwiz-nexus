@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { useRouterState } from "@tanstack/react-router";
+import { AppLink } from "@/components/shared/AppLink";
 import { useQuery } from "@tanstack/react-query";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -26,7 +27,7 @@ export function SiteHeader() {
       )}
     >
       <div className="container-page flex h-18 items-center justify-between gap-4 py-3">
-        <Link to="/" className="flex items-center gap-3" aria-label={siteName}>
+        <AppLink to="/" className="flex items-center gap-3" aria-label={siteName}>
           {logo ? (
             <img src={logo} alt={siteName} className="h-11 w-auto object-contain" />
           ) : (
@@ -38,7 +39,7 @@ export function SiteHeader() {
             <span className="font-heading text-base font-bold">{siteName}</span>
             <span className="text-xs text-muted-foreground">{str(brand, "tagline")}</span>
           </span>
-        </Link>
+        </AppLink>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="القائمة الرئيسية">
           {items.map((item) => {
@@ -53,7 +54,7 @@ export function SiteHeader() {
                 )}
               >
                 {item.label}
-              </Link>
+              </AppLink>
             );
           })}
         </nav>
@@ -61,7 +62,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           {bool(header, "show_cta", true) ? (
             <Button asChild className="hidden md:inline-flex">
-              <Link to={str(header, "cta_url", "/consultation")}>{str(header, "cta_label", "اطلب استشارة")}</Link>
+              <AppLink to={str(header, "cta_url", "/consultation")}>{str(header, "cta_label", "اطلب استشارة")}</AppLink>
             </Button>
           ) : null}
           <button
@@ -87,12 +88,12 @@ export function SiteHeader() {
                 className="rounded-lg px-3 py-3 text-sm font-medium hover:bg-muted"
               >
                 {item.label}
-              </Link>
+              </AppLink>
             ))}
             <Button asChild className="mt-2">
-              <Link to={str(header, "cta_url", "/consultation")} onClick={() => setOpen(false)}>
+              <AppLink to={str(header, "cta_url", "/consultation")} onClick={() => setOpen(false)}>
                 {str(header, "cta_label", "اطلب استشارة")}
-              </Link>
+              </AppLink>
             </Button>
           </nav>
         </div>

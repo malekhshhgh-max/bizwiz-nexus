@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { AppLink } from "@/components/shared/AppLink";
 import { useQuery } from "@tanstack/react-query";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import { navigationQuery, settingsQuery, str, bool } from "@/lib/cms/api";
@@ -50,9 +50,9 @@ export function SiteFooter() {
           <ul className="mt-4 space-y-2.5 text-sm">
             {items.map((item) => (
               <li key={item.id}>
-                <Link to={item.url} className="text-primary-foreground/75 transition-colors hover:text-primary-foreground">
+                <AppLink to={item.url} className="text-primary-foreground/75 transition-colors hover:text-primary-foreground">
                   {item.label}
-                </Link>
+                </AppLink>
               </li>
             ))}
           </ul>
@@ -91,7 +91,7 @@ export function SiteFooter() {
       <div className="border-t border-primary-foreground/15">
         <div className="container-page flex flex-col items-center justify-between gap-2 py-5 text-xs text-primary-foreground/60 sm:flex-row">
           <span>© {new Date().getFullYear()} {siteName} — {str(footer, "copyright", "جميع الحقوق محفوظة")}</span>
-          <Link to="/admin" className="transition-colors hover:text-primary-foreground">لوحة التحكم</Link>
+          <AppLink to="/admin" className="transition-colors hover:text-primary-foreground">لوحة التحكم</AppLink>
         </div>
       </div>
     </footer>
