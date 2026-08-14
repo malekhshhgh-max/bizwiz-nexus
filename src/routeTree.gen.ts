@@ -16,10 +16,12 @@ import { Route as ConsultationRouteImport } from './routes/consultation'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminActivityRouteImport } from './routes/admin/activity'
+import { Route as AdminAppearanceRouteImport } from './routes/admin/appearance'
 import { Route as AdminConsultationsRouteImport } from './routes/admin/consultations'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminMediaRouteImport } from './routes/admin/media'
 import { Route as AdminMessagesRouteImport } from './routes/admin/messages'
+import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services/index'
@@ -61,6 +63,11 @@ const AdminActivityRoute = AdminActivityRouteImport.update({
   path: '/activity',
   getParentRoute: () => AdminRouteRoute,
 } as any)
+const AdminAppearanceRoute = AdminAppearanceRouteImport.update({
+  id: '/appearance',
+  path: '/appearance',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 const AdminConsultationsRoute = AdminConsultationsRouteImport.update({
   id: '/consultations',
   path: '/consultations',
@@ -79,6 +86,11 @@ const AdminMediaRoute = AdminMediaRouteImport.update({
 const AdminMessagesRoute = AdminMessagesRouteImport.update({
   id: '/messages',
   path: '/messages',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => AdminRouteRoute,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -114,10 +126,12 @@ export interface FileRoutesByFullPath {
   '/consultation': typeof ConsultationRoute
   '/contact': typeof ContactRoute
   '/admin/activity': typeof AdminActivityRoute
+  '/admin/appearance': typeof AdminAppearanceRoute
   '/admin/consultations': typeof AdminConsultationsRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/messages': typeof AdminMessagesRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -131,10 +145,12 @@ export interface FileRoutesByTo {
   '/consultation': typeof ConsultationRoute
   '/contact': typeof ContactRoute
   '/admin/activity': typeof AdminActivityRoute
+  '/admin/appearance': typeof AdminAppearanceRoute
   '/admin/consultations': typeof AdminConsultationsRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/messages': typeof AdminMessagesRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/admin': typeof AdminIndexRoute
@@ -150,10 +166,12 @@ export interface FileRoutesById {
   '/consultation': typeof ConsultationRoute
   '/contact': typeof ContactRoute
   '/admin/activity': typeof AdminActivityRoute
+  '/admin/appearance': typeof AdminAppearanceRoute
   '/admin/consultations': typeof AdminConsultationsRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/messages': typeof AdminMessagesRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -170,10 +188,12 @@ export interface FileRouteTypes {
     | '/consultation'
     | '/contact'
     | '/admin/activity'
+    | '/admin/appearance'
     | '/admin/consultations'
     | '/admin/login'
     | '/admin/media'
     | '/admin/messages'
+    | '/admin/settings'
     | '/blog/$slug'
     | '/services/$slug'
     | '/admin/'
@@ -187,10 +207,12 @@ export interface FileRouteTypes {
     | '/consultation'
     | '/contact'
     | '/admin/activity'
+    | '/admin/appearance'
     | '/admin/consultations'
     | '/admin/login'
     | '/admin/media'
     | '/admin/messages'
+    | '/admin/settings'
     | '/blog/$slug'
     | '/services/$slug'
     | '/admin'
@@ -205,10 +227,12 @@ export interface FileRouteTypes {
     | '/consultation'
     | '/contact'
     | '/admin/activity'
+    | '/admin/appearance'
     | '/admin/consultations'
     | '/admin/login'
     | '/admin/media'
     | '/admin/messages'
+    | '/admin/settings'
     | '/blog/$slug'
     | '/services/$slug'
     | '/admin/'
@@ -280,6 +304,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminActivityRouteImport
       parentRoute: typeof AdminRouteRoute
     }
+    '/admin/appearance': {
+      id: '/admin/appearance'
+      path: '/appearance'
+      fullPath: '/admin/appearance'
+      preLoaderRoute: typeof AdminAppearanceRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
     '/admin/consultations': {
       id: '/admin/consultations'
       path: '/consultations'
@@ -306,6 +337,13 @@ declare module '@tanstack/react-router' {
       path: '/messages'
       fullPath: '/admin/messages'
       preLoaderRoute: typeof AdminMessagesRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/blog/': {
@@ -348,20 +386,24 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteRouteChildren {
   AdminActivityRoute: typeof AdminActivityRoute
+  AdminAppearanceRoute: typeof AdminAppearanceRoute
   AdminConsultationsRoute: typeof AdminConsultationsRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminMediaRoute: typeof AdminMediaRoute
   AdminMessagesRoute: typeof AdminMessagesRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
   AdminIndexRoute: typeof AdminIndexRoute
   AdminContentResourceRoute: typeof AdminContentResourceRoute
 }
 
 const AdminRouteRouteChildren: AdminRouteRouteChildren = {
   AdminActivityRoute: AdminActivityRoute,
+  AdminAppearanceRoute: AdminAppearanceRoute,
   AdminConsultationsRoute: AdminConsultationsRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminMediaRoute: AdminMediaRoute,
   AdminMessagesRoute: AdminMessagesRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
   AdminIndexRoute: AdminIndexRoute,
   AdminContentResourceRoute: AdminContentResourceRoute,
 }
