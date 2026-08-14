@@ -40,3 +40,18 @@ export const ORGANIZATION_TYPES = [
   "مبادرة أو مشروع",
   "أخرى",
 ] as const;
+
+export const LEAD_STATUS_LABELS: Record<string, string> = Object.fromEntries(
+  LEAD_STATUSES.map((s) => [s.value, s.label]),
+);
+
+export const MESSAGE_STATUSES = [
+  { value: "new", label: "جديدة" },
+  { value: "read", label: "مقروءة" },
+  { value: "replied", label: "تم الرد" },
+  { value: "archived", label: "مؤرشفة" },
+] as const;
+
+export const MESSAGE_STATUS_LABELS: Record<string, string> = Object.fromEntries(
+  MESSAGE_STATUSES.map((s) => [s.value, s.label]),
+);
