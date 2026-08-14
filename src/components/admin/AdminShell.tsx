@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { useRouterState } from "@tanstack/react-router";
+import { AppLink } from "@/components/shared/AppLink";
 import { useAuth, ROLE_LABELS } from "@/hooks/useAuth";
 import { Icon } from "@/components/shared/Icon";
 import { Button } from "@/components/ui/button";
@@ -66,7 +67,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
               const active = item.to === "/admin" ? pathname === "/admin" : pathname.startsWith(item.to);
               return (
                 <li key={item.to}>
-                  <Link
+                  <AppLink
                     to={item.to}
                     onClick={onNavigate}
                     className={cn(
@@ -78,7 +79,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
                   >
                     <Icon name={item.icon} className="size-4 shrink-0" />
                     <span className="truncate">{item.label}</span>
-                  </Link>
+                  </AppLink>
                 </li>
               );
             })}
@@ -141,9 +142,9 @@ export function AdminShell({
                   {breadcrumbs.map((b, i) => (
                     <span key={i} className="flex items-center gap-1">
                       {b.to ? (
-                        <Link to={b.to} className="hover:text-foreground">
+                        <AppLink to={b.to} className="hover:text-foreground">
                           {b.label}
-                        </Link>
+                        </AppLink>
                       ) : (
                         <span>{b.label}</span>
                       )}
