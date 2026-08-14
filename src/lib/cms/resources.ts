@@ -119,7 +119,9 @@ export const RESOURCES: Record<string, ResourceConfig> = {
     ],
     fields: [
       { name: "title", label: "اسم القطاع", type: "text", required: true },
+      { name: "slug", label: "الرابط", type: "slug", required: true },
       { name: "icon", label: "الأيقونة", type: "icon" },
+      { name: "image", label: "الصورة", type: "image", full: true },
       { name: "description", label: "الوصف", type: "textarea", full: true },
       { name: "sort_order", label: "الترتيب", type: "number", defaultValue: 0 },
       { name: "is_visible", label: "ظاهر", type: "boolean", defaultValue: true },
@@ -138,11 +140,16 @@ export const RESOURCES: Record<string, ResourceConfig> = {
     ],
     fields: [
       { name: "title", label: "اسم المشروع", type: "text", required: true },
+      { name: "slug", label: "الرابط", type: "slug", required: true },
       { name: "client_name", label: "اسم العميل", type: "text" },
+      { name: "completion_date", label: "تاريخ الإنجاز", type: "date" },
       { name: "category", label: "التصنيف", type: "text" },
       { name: "description", label: "الوصف", type: "textarea", full: true },
+      { name: "content", label: "التفاصيل", type: "richtext", full: true },
       { name: "image", label: "الصورة", type: "image", full: true },
+      { name: "gallery", label: "معرض الصور", type: "json", full: true, help: '["https://..."]', defaultValue: [] },
       { name: "results", label: "النتائج", type: "json", full: true, help: '["نتيجة 1"]', defaultValue: [] },
+      { name: "is_featured", label: "مشروع مميز", type: "boolean", defaultValue: false },
       { name: "sort_order", label: "الترتيب", type: "number", defaultValue: 0 },
       { name: "is_visible", label: "ظاهر", type: "boolean", defaultValue: true },
     ],
@@ -217,7 +224,7 @@ export const RESOURCES: Record<string, ResourceConfig> = {
     columns: [
       { name: "author_name", label: "العميل" },
       { name: "organization", label: "الجهة" },
-      { name: "is_visible", label: "ظاهر", type: "boolean" },
+      { name: "is_approved", label: "معتمد", type: "boolean" },
     ],
     fields: [
       { name: "author_name", label: "اسم العميل", type: "text", required: true },
@@ -227,7 +234,7 @@ export const RESOURCES: Record<string, ResourceConfig> = {
       { name: "content", label: "نص الرأي", type: "textarea", required: true, full: true },
       { name: "rating", label: "التقييم (1-5)", type: "number", defaultValue: 5 },
       { name: "sort_order", label: "الترتيب", type: "number", defaultValue: 0 },
-      { name: "is_visible", label: "ظاهر", type: "boolean", defaultValue: true },
+      { name: "is_approved", label: "معتمد ويظهر في الموقع", type: "boolean", defaultValue: true },
     ],
   },
   navigation: {
@@ -257,6 +264,7 @@ export const RESOURCES: Record<string, ResourceConfig> = {
         ],
       },
       { name: "sort_order", label: "الترتيب", type: "number", defaultValue: 0 },
+      { name: "open_in_new_tab", label: "فتح في نافذة جديدة", type: "boolean", defaultValue: false },
       { name: "is_visible", label: "ظاهر", type: "boolean", defaultValue: true },
     ],
   },
