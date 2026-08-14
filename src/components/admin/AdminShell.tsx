@@ -98,8 +98,8 @@ export function AdminShell({
   children,
 }: {
   title: string;
-  description?: string;
-  breadcrumbs?: { label: string; to?: string }[];
+  description?: string | undefined;
+  breadcrumbs?: { label: string; to?: string }[] | undefined;
   actions?: ReactNode;
   children: ReactNode;
 }) {

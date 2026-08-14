@@ -28,7 +28,7 @@ function ConsultationsPage() {
 
   const update = useMutation({
     mutationFn: async ({ id, patch, label }: { id: string; patch: Record<string, unknown>; label: string }) => {
-      const { error } = await supabase.from("consultation_requests").update(patch).eq("id", id);
+      const { error } = await supabase.from("consultation_requests").update(patch as never).eq("id", id);
       if (error) throw new Error(error.message);
       await logActivity({ action: "update", entityType: "consultation_requests", entityId: id, entityLabel: label, details: patch });
     },
